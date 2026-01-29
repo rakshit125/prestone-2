@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+/* Light theme (default) - controlled by theme toggle, NOT system preference */
+:root {
+  --background: #fafafa;
+  --foreground: #171717;
+}
+
+/* Dark theme - only when .dark class is on html */
+html.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
+  
+  /* Custom brand colors */
+  --color-brand-orange: #FF6B00;
+  --color-brand-dark: #0A0A0A;
+}
+
+body {
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Force gradient + text color by data-theme */
+html[data-theme="light"] body {
+  background: linear-gradient(135deg, #fef7f2 0%, #fafafa 35%, #f0f7ff 70%, #fef7f2 100%) !important;
+  color: #171717 !important;
+}
+
+html[data-theme="dark"] body,
+html.dark body {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0d0d0d 30%, #0a0806 60%, #050508 100%) !important;
+  color: #ededed !important;
+}
+
+/* Scrollbar - light theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e5e5e5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #a3a3a3;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FF6B00;
+}
+
+/* Scrollbar - dark theme */
+html.dark ::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #404040;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #FF6B00;
+}
+
+/* Site-wide gradient background (used on main wrapper) */
+.site-bg-gradient-light {
+  background: linear-gradient(135deg, #fef7f2 0%, #fafafa 35%, #f0f7ff 70%, #fef7f2 100%);
+}
+
+.site-bg-gradient-dark {
+  background: linear-gradient(135deg, #0a0a0a 0%, #0d0d0d 30%, #0a0806 60%, #050508 100%);
+}
+
+/* Glass Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+html.dark .glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Navbar – visible glass (blur + transparent, frosted dikhe) */
+.glass-navbar {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+html.dark .glass-navbar {
+  background: rgba(15, 15, 15, 0.5);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Departments dropdown – light glass, kam blur */
+.glass-dropdown {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+html.dark .glass-dropdown {
+  background: rgba(18, 18, 18, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Section-level glass (slightly more opaque for readability) */
+.glass-section {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+html.dark .glass-section {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-panel-hover:hover {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+html.dark .glass-panel-hover:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* No scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Animation keyframes */
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); }
+}
+
+@keyframes shine {
+  0% { transform: translateX(-100%) skewX(-12deg); }
+  100% { transform: translateX(200%) skewX(-12deg); }
+}
+
+.animate-shine {
+  animation: shine 2s infinite;
+}

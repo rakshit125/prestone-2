@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Search, Menu, X, Sun, Moon, ChevronDown, MapPin, Phone, ArrowRight } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, px } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -51,11 +51,16 @@ const Navbar: React.FC<NavbarProps> = ({ onSearchClick, theme, toggleTheme }) =>
       </div> */}
 
       <nav className="fixed top-4 left-0 right-0 z-40 px-4 md:px-6">
-        <div className={`max-w-7xl mx-auto rounded-2xl h-16 glass-section ${scrolled ? 'shadow-lg' : ''}`}>
-        <div className="px-6 h-full flex items-center justify-between">
-          {/* Logo & Departments */}
-          <div className="flex items-center gap-8">
-            <Link 
+        <div
+          style={{ backdropFilter: "blur(10.2px)" }}
+          className={`max-w-7xl mx-auto rounded-2xl h-16 glass-bg  ${
+            scrolled ? 'shadow-lg' : ''
+          }`}
+        >
+          <div className="px-6 h-full flex items-center justify-between">
+            {/* Logo & Departments */}
+            <div className="flex items-center gap-8">
+              <Link 
               href="/"
               className="flex items-center cursor-pointer group"
               onClick={handleHomeClick}

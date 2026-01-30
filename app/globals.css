@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Enable class-based dark mode for Tailwind v4 */
+@variant dark (&:is(.dark, .dark *));
+
 /* Light theme (default) - controlled by theme toggle, NOT system preference */
 :root {
   --background: #fafafa;
@@ -12,7 +15,7 @@ html.dark {
   --foreground: #ededed;
 }
 
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-inter);
@@ -31,14 +34,14 @@ body {
 
 /* Force gradient + text color by data-theme */
 html[data-theme="light"] body {
-  background: linear-gradient(135deg, #fef7f2 0%, #fafafa 35%, #f0f7ff 70%, #fef7f2 100%) !important;
-  color: #171717 !important;
+  background: linear-gradient(135deg, #fef7f2 0%, #fafafa 35%, #f0f7ff 70%, #fef7f2 100%);
+  color: #171717;
 }
 
 html[data-theme="dark"] body,
 html.dark body {
-  background: linear-gradient(135deg, #0a0a0a 0%, #0d0d0d 30%, #0a0806 60%, #050508 100%) !important;
-  color: #ededed !important;
+  background: linear-gradient(135deg, #0a0a0a 0%, #0d0d0d 30%, #0a0806 60%, #050508 100%);
+  color: #ededed;
 }
 
 /* Scrollbar - light theme */
@@ -179,4 +182,15 @@ html.dark .glass-panel-hover:hover {
 
 .animate-shine {
   animation: shine 2s infinite;
+}
+
+
+.glass-bg{
+ /* From https://css.glass */
+background: rgba(255, 255, 255, 0.37)  !important;
+border-radius: 16px !important;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
+backdrop-filter: blur(10.2px) !important;
+-webkit-backdrop-filter: blur(10.2px) !important;
+border: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
